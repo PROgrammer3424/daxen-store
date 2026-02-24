@@ -1,0 +1,30 @@
+:root {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+    --color-primary: #0F172A;     /* Azul oscuro */
+    --color-secondary: #334155;   /* Azul grisáceo */
+    --color-accent: #4D7C0F;      /* Verde oliva */
+    --color-background: #F8F8FA;  /* Blanco grisáceo */
+    --color-text: #0F172A;        /* Texto principal */
+    --color-muted: #64748B;       /* Texto secundario */
+
+    --color-primary: #0f172a;  /* slate-900 */
+    --color-border: #cbd5e1;   /* slate-300 */
+    --color-border-hover: #94a3b8; /* slate-400 */
+    --color-text: #334155;     /* slate-700 */
+}
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Poppins', 'sans-serif';
+  color: var(--color-text);
+  background-color: #f7f4f4;
+} 
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', 'serif';
+}
+
+main{
+  min-height: 100vh;
+}
