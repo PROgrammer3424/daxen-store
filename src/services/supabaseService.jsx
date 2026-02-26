@@ -64,6 +64,7 @@ export const getProductos = async () => {
         material: prod.material,
         industria: prod.industria,
         estado: prod.estado ? 'activo' : 'inactivo',
+        destacado: prod.destacado,
         variantes: variantesOrdenadas  
       }
     })
@@ -133,6 +134,7 @@ export const getProductoById = async (codigo) => {
       material: producto.material,
       industria: producto.industria,
       estado: producto.estado ? 'activo' : 'inactivo',
+      destacado: producto.destacado,
       variantes: variantesOrdenadas  
     }
   } catch (error) {

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import ProductosDestacados from "../components/ProductosDestacados";
 
 const Hero = () => {
   return (
@@ -17,17 +18,27 @@ const Hero = () => {
           <div className="row">
             <div className="col-lg-8 col-xl-6">
               <h1 className="hero-title display-2 fw-bold text-white mb-4" data-testid="hero-title">
-                Eleva tu estilo urbano
+                Remeras que definen tu estilo
               </h1>
-              <p className="hero-subtitle fs-4 text-white-50 mb-5" data-testid="hero-subtitle">
+              <p className="hero-subtitle fs-4 text-white mb-5" data-testid="hero-subtitle">
                 Descubre remeras de algodón A1, oversize y corte clásico para destacar todos los días.
               </p>
+               <div className="d-flex flex-wrap gap-4 mb-5">
+              <div className="d-flex align-items-center text-white">
+                <i className="bi bi-truck fs-4 me-2"></i>
+                <span>Envío a domicilio</span>
+              </div>
+              <div className="d-flex align-items-center text-white">
+                <i className="bi bi-shield-check fs-4 me-2"></i>
+                <span>Calidad garantizada</span>
+              </div>
+            </div>
               <Link 
                 to="/catalogo"
                 className="btn btn-hero btn-lg rounded-pill px-5 py-3 fw-medium"
                 data-testid="hero-cta-button"
               >
-                Ver catálogo
+                Ver todos los productos
               </Link>
             </div>
           </div>
@@ -81,13 +92,13 @@ const CategoriesGrid = () => {
     },
     {
       title: "Oversize",
-      description: "Remeras técnicas para alto rendimiento",
+      description: "Remeras con estilo relajado y moderno",
       imageUrl: "https://iili.io/qHnjGnf.png",
       category: "oversize"
     },
     {
       title: "Boxy Fit",
-      description: "Descuentos especiales",
+      description: "Remeras con un corte moderno",
       imageUrl: "https://iili.io/qHCrwDN.png",
       category: "boxy-fit"
     }
@@ -126,6 +137,7 @@ export const HomePage = () => {
   return (
     <div data-testid="home-page">
       <Hero />
+      <ProductosDestacados />
       <CategoriesGrid />
     </div>
   );

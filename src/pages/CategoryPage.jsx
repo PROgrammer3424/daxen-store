@@ -27,7 +27,10 @@ const CategoryPage = () => {
             'novedades': 'novedad',
             'ofertas': 'oferta',
             'oversize': 'Oversize',
-            'boxy-fit': 'Boxy Fit'};
+            'boxy-fit': 'Boxy Fit',
+            'destacados' : 'destacados'
+        };
+        setCategoriaTitulo(categoryTitles[category] || "Categoría");
         setLoading(false);
 
         if (category === 'novedades') {
