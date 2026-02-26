@@ -16,12 +16,12 @@ const Hero = () => {
            }}>
         <div className="container px-4 px-md-5 px-lg-6">
           <div className="row">
-            <div className="col-lg-8 col-xl-6">
+            <div className="col-lg-8 col-xl-6 ">
               <h1 className="hero-title display-2 fw-bold text-white mb-4" data-testid="hero-title">
                 Remeras que definen tu estilo
               </h1>
-              <p className="hero-subtitle fs-4 text-white mb-3 small text-muted" data-testid="hero-subtitle">
-                Descubre remeras de algodón A1, oversize y corte clásico para destacar todos los días.
+              <p className="hero-subtitle fs-4 mb-3 small color" data-testid="hero-subtitle">
+                Descubre remeras de algodón A1, oversize y corte clásico.
               </p>
               <div className="d-flex flex-wrap gap-3 mb-5">
                 <div className="d-flex align-items-center text-white">

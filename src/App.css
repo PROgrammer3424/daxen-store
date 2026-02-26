@@ -35,6 +35,10 @@
   transform: scale(1.05);
 }
 
+.color{
+  color: var(--color-border);
+}
+
 /* Precio con descuento */
 .price-discounted {
   color: var(--muted);
