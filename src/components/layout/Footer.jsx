@@ -36,7 +36,7 @@ const Footer = () => {
                 <h4 className="h5 mb-3 subtitulo">Síguenos</h4>
                 <div className="d-flex gap-3">
                     <a 
-                        href="https://facebook.com" 
+                        href="https://www.facebook.com/profile.php?id=61587809214481" 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="social-icon"
@@ -89,7 +89,7 @@ const Footer = () => {
             <div className="col-md-3">
                 <div className="rounded-lg overflow-hidden border border-slate-200">
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d204.5349195366085!2d-64.34479293595122!3d-22.73449385870453!3m2!1i1024!2i768!4f13.1!5e1!3m2!1ses-419!2sar!4v1771799484875!5m2!1ses-419!2sar"
+                    src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d459.9784755496629!2d-64.3449083!3d-22.7346408!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjLCsDQ0JzA0LjMiUyA2NMKwMjAnNDEuMSJX!5e0!3m2!1ses!2sbo!4v1772337167741!5m2!1ses!2sbo"
                     width="100%"
                     height="200"
                     style={{ border: 0 }}
