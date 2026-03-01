@@ -16,11 +16,16 @@ const Footer = () => {
                     <div className="small text-muted">
                         <div className="d-flex align-items-center mb-2">
                             <Phone className="text-lime-800 contact-icon" size={20}/>
-                            <span>+591 78087698</span>
-                        </div>
+                            <a href="tel:+59178087698" className="text-decoration-none">
+                                +591 78087698
+                            </a>
+                            </div>
+
                         <div className="d-flex align-items-center mb-2">
                             <Mail className="text-lime-800 contact-icon" size={20}/>
-                            <span>storedaxen@gmail.com</span>
+                            <a href="mailto:storedaxen@gmail.com" className="text-decoration-none">
+                                storedaxen@gmail.com
+                            </a>
                         </div>
                         <div className="d-flex align-items-start mb-2">
                             <Clock className="text-lime-800 contact-icon" size={20}/>

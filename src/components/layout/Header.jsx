@@ -5,10 +5,19 @@ const Header = ({cartCount, onCartClick}) => {
       <div className="container">
         <div className="d-flex justify-content-between align-items-center">
       <div className="d-flex align-items-center gap-2">
-        <div >
+        <div 
+          style={{ 
+            width: '40px',
+            height: '40px',
+          }}
+        >
           <img 
             src="/images/preview.png" 
             alt="Daxen Store Logo" 
+            style={{
+              width: '100%',
+              height: '100%'
+            }}
           />
         </div>
         <h1 className="titulo mb-0">
