@@ -15,13 +15,30 @@ export const Cart = ({ isOpen, onClose, cart, onUpdateQuantity, onRemoveItem, on
             <h2 className="cart-title" data-testid="cart-title">Mi Carrito</h2>
             <p className="cart-subtitle" data-testid="cart-item-count">{cart.length} productos</p>
           </div>
-          <button 
-            onClick={onClose} 
-            className="cart-close-btn"
-            data-testid="cart-close-button"
-          >
-            <X className="cart-icon" />
-          </button>
+          {cart.length === 0 ? (
+            <button 
+              onClick={onClose} 
+              className="cart-close-btn"
+              data-testid="cart-close-button"
+            >
+              <X className="cart-icon" />
+            </button>
+          ) : (
+            <button 
+              onClick={onClose}
+              className="btn btn-outline-secondary rounded-pill px-4 py-2"
+              style={{
+                borderWidth: '1.5px',
+                fontWeight: '500',
+                fontSize: '0.95rem',
+                transition: 'all 0.3s ease'
+              }}
+            >
+              <i className="bi bi-arrow-left me-2"></i>
+              Pedir más
+            </button>
+            )
+          }
         </div>
 
         <div className="cart-body">

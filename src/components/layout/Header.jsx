@@ -1,4 +1,4 @@
-import { Link, ShoppingBag } from 'lucide-react';
+import { ShoppingCart } from 'lucide-react';
 const Header = ({cartCount, onCartClick}) => {
   return (
     <div className="sticky-top py-3 navbar-blur">
@@ -30,7 +30,7 @@ const Header = ({cartCount, onCartClick}) => {
         className="cart-btn"
         data-testid="cart-button"
       >
-        <ShoppingBag className="cart-icon" />
+        <ShoppingCart className="cart-icon" />
         {cartCount > 0 && (
           <span className="cart-count" data-testid="cart-count">
             {cartCount}

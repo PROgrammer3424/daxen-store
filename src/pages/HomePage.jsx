@@ -4,47 +4,102 @@ import ProductosDestacados from "../components/ProductosDestacados";
 
 const Hero = () => {
   return (
-    <section className="hero-section position-relative overflow-hidden" data-testid="hero-section">
-      <img 
-        src="https://iili.io/qFAWMQV.jpg"
-        alt="Man in formal tennis wear"
-        className="w-100 h-100 object-fit-cover"
-      />
-      <div className="hero-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
-           style={{ 
-             background: 'linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%)'
+<section className="hero-section position-relative overflow-hidden vh-90" data-testid="hero-section">
+  <img 
+    src="https://iili.io/qFAWMQV.jpg"
+    alt="Background"
+    className="w-100 h-100 object-fit-cover"
+  />
+  
+  <div className="hero-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
+       style={{ 
+         background: 'linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.7) 100%)'
+       }}>
+    
+    <div className="container px-4 px-md-5 px-lg-6 position-relative">
+      <div className="d-lg-none position-absolute d-flex align-items-center justify-content-center hero-image-mobile"
+           style={{
+             top: '50%',
+             left: '30%',
+             transform: 'translateY(-50%)',
+             width: '100%',
+             height: '100%',
+             animation: 'slideInFromRight 1s ease-out forwards'
            }}>
-        <div className="container px-4 px-md-5 px-lg-6">
-          <div className="row">
-            <div className="col-lg-8 col-xl-6 ">
-              <h1 className="hero-title display-2 fw-bold text-white mb-4" data-testid="hero-title">
-                Remeras que definen tu estilo
-              </h1>
-              <p className="hero-subtitle fs-4 mb-3 small color" data-testid="hero-subtitle">
-                Descubre remeras de algodón A1, oversize y corte clásico.
-              </p>
-              <div className="d-flex flex-wrap gap-3 mb-5">
-                <div className="d-flex align-items-center text-white">
-                  <i className="bi bi-truck fs-4 me-2 small"></i>
-                  <span>Envío a domicilio</span>
-                </div>
-                <div className="d-flex align-items-center text-white">
-                  <i className="bi bi-shield-check fs-4 me-2"></i>
-                  <span>Calidad garantizada</span>
-                </div>
-              </div>
-              <Link 
-                to="/catalogo"
-                className="btn btn-hero btn-lg rounded-pill px-5 py-3 fw-medium"
-                data-testid="hero-cta-button"
-              >
-                Ver todos los productos
-              </Link>
+        <img 
+          src="https://iili.io/qoyvBiQ.png" 
+          alt="Remera destacada"
+          className="img-fluid"
+          style={{
+            maxWidth: '120%', 
+            maxHeight: '100vh',
+            objectFit: 'contain',
+            filter: 'drop-shadow(0 20px 80px rgba(0,0,0,1))',
+          }}
+        />
+      </div>
+
+      <div className="row align-items-center position-relative" style={{ zIndex: 1 }}>
+        <div className="col-lg-6">
+          <h1 className="hero-title display-2 fw-bold text-white mb-4" 
+              data-testid="hero-title">
+            Remeras que definen tu estilo
+          </h1>
+          
+          <p className="hero-subtitle fs-4 mb-3" 
+             data-testid="hero-subtitle"
+             style={{
+               color: 'rgba(255,255,255,0.9)',
+               backdropFilter: '2px 2px 4px rgba(0,0,0,0.9), 0 0 10px rgba(0,0,0,0.8)',
+               fontWeight: 500
+             }}>
+            Descubre remeras de algodón A1, oversize y corte clásico.
+          </p>
+          
+          <div className="d-flex flex-wrap gap-4 mb-5">
+            <div className="d-flex align-items-center text-white"
+                 style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.9)' }}>
+              <i className="bi bi-truck fs-4 me-2"></i>
+              <span>Envío a domicilio</span>
             </div>
+            <div className="d-flex align-items-center text-white"
+                 style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.9)' }}>
+              <i className="bi bi-shield-check fs-4 me-2"></i>
+              <span>Calidad garantizada</span>
+            </div>
+          </div>
+          
+          <Link 
+            to="/catalogo"
+            className="btn btn-hero btn-lg rounded-pill px-5 py-3 fw-medium"
+            data-testid="hero-cta-button"
+            style={{ boxShadow: '0 4px 15px rgba(0,0,0,0.5)' }}>
+            Ver catálogo
+          </Link>
+        </div>
+
+        <div className="col-lg-6 d-none d-lg-block position-relative" 
+             style={{ minHeight: '500px' }}>
+          <div className="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"
+               style={{ animation: 'slideInFromRight 1s ease-out forwards' }}>
+            <img 
+              src="https://iili.io/qoyvBiQ.png" 
+              alt="Remera destacada"
+              className="img-fluid"
+              style={{
+                maxWidth: '100%', 
+                maxHeight: '75vh',
+                objectFit: 'contain',
+                filter: 'drop-shadow(0 20px 80px rgba(0,0,0,1))',
+                transform: 'scale(1.2)' 
+              }}
+            />
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
   );
 };
 

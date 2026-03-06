@@ -94,7 +94,7 @@ const Footer = () => {
             <div className="col-md-3">
                 <div className="rounded-lg overflow-hidden border border-slate-200">
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d459.9784755496629!2d-64.3449083!3d-22.7346408!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjLCsDQ0JzA0LjMiUyA2NMKwMjAnNDEuMSJX!5e0!3m2!1ses!2sbo!4v1772337167741!5m2!1ses!2sbo"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d709.3850102152527!2d-64.34450565382592!3d-22.734418648587717!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94057fd92f32fea1%3A0xaadf2d3807667d51!2sDaxen%20Store!5e0!3m2!1ses-419!2sbo!4v1772810506498!5m2!1ses-419!2sbo" 
                     width="100%"
                     height="200"
                     style={{ border: 0 }}

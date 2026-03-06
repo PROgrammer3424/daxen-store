@@ -888,3 +888,41 @@ footer{
     width: 24px;
   }
 }
+
+.vh-90 {
+  height: min(90vh, 800px); 
+  min-height: 500px;
+}
+
+@media (max-width: 768px) {
+  .vh-90 {
+    height: min(60vh, 600px);
+    min-height: 400px;
+  }
+}
+
+@keyframes slideInFromRight {
+      0% {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      100% {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+    
+    .hero-image-mobile {
+      animation: slideInFromRightMobile 1s ease-out forwards !important;
+    }
+    
+    @keyframes slideInFromRightMobile {
+      0% {
+        transform: translate(100%, -50%);
+        opacity: 0;
+      }
+      100% {
+        transform: translate(0, -50%);
+        opacity: 1;
+      }
+    }

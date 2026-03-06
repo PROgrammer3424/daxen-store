@@ -7,7 +7,7 @@ import CategoryPage from "../pages/CategoryPage";
 const Main = ({onAddToCart, cartItems}) => {
     return (
         <Routes>
-            <Route path="/producto/:id" element={<ProductoDetail onAddToCart={onAddToCart} cartItems={cartItems}/>} />
+            <Route path="/producto/:id" element={<ProductoDetail onAddToCart={onAddToCart} cartItems={cartItems} />} />
             <Route path="/catalogo" element={<Catalog />} />
             <Route path="/" element={<HomePage />} />
             <Route path="/categoria/:category" element={<CategoryPage />} />

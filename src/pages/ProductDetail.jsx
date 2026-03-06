@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { getProductoById, getProductos } from '../services/supabaseService'; 
 import ProductCard from '../components/ProductCard';
 import ProductImages from '../components/ProductImages';
+import { ShoppingCart } from 'lucide-react';
 
-const ProductoDetail = ({ onAddToCart, cartItems }) => {
+const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER;
+
+const ProductoDetail = ({ onAddToCart, cartItems, cartCount }) => {
     const {id} = useParams();
     const navigate = useNavigate();
 
@@ -33,23 +36,30 @@ const ProductoDetail = ({ onAddToCart, cartItems }) => {
     useEffect(() => {
         const loadProduct = async () => {
             setLoading(true);
-            window.scrollTo(0, 0);
-            
             const productoEncontrado = await getProductoById(id);
             setProducto(productoEncontrado);
-            
+            window.scrollTo(0, 0);
             if (productoEncontrado?.variantes?.length > 0) {
                 const primeraTalla = productoEncontrado.variantes[0].size;
                 setSelectedTalla(primeraTalla);
-                
                 const primeraVariante = productoEncontrado.variantes[0];
                 const primerColorConStock = primeraVariante.colors?.find(c => c.stock > 0);
                 
                 if (primerColorConStock) {
                     setSelectedColor(primerColorConStock.color);
-                } else {
-                    setSelectedColor('');
-                }
+                } 
+                setTimeout(() => {
+                const seccionPedido = document.getElementById('seccion-pedido');
+                if (seccionPedido) {
+                    const headerHeight = 80;
+                    const elementPosition = seccionPedido.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = elementPosition - headerHeight;
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                    }
+                }, 900);
             }
 
             if (productoEncontrado) {
@@ -144,13 +154,19 @@ const ProductoDetail = ({ onAddToCart, cartItems }) => {
             });
         }
     };
-    
-    const handleVolver = () => {
-        if (window.history.length > 2) {
-            navigate(-1);
-        } else {
-            navigate('/');
-        }
+    const handleWhatsAppIndividual = () => {
+        const mensaje = encodeURIComponent(
+            `¡Hola! Quiero este producto:\n\n` +
+            `*Tipo:* ${producto.tipo}\n` +
+            `*Nombre:* ${producto.nombre}\n` +
+            `*Talla:* ${selectedTalla}\n` +
+            `*Color:* ${selectedColor}\n` +
+            `*Cantidad:* 1\n` +
+            `*Precio:* Bs. ${producto.precio_venta}\n\n` +
+            `¿Está disponible?`
+        );
+        
+        window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${mensaje}`, '_blank');
     };
 
     if (loading) {
@@ -185,28 +201,24 @@ const ProductoDetail = ({ onAddToCart, cartItems }) => {
     return (
         <div className="" >
             <div className="container px-4 px-md-5 px-lg-6 py-4">
-                <button
-                    onClick={handleVolver}
-                    className="btn btn-link d-inline-flex align-items-center text-decoration-none mb-4 p-0"
+                <Link
+                    to="/"
+                    className="d-inline-flex align-items-center text-decoration-none mb-4"
                     style={{
                         color: '#888888',
-                        transition: 'color 0.3s',
-                        border: 'none',
-                        background: 'none',
-                        cursor: 'pointer'
+                        transition: 'color 0.3s'
                     }}
-                    data-testid="back-to-catalog-button"
-                    >
+                    data-testid="back-to-catalog-button">
                     <i className="bi bi-arrow-left me-2"></i>
                     Volver al catálogo
-                </button>
+                </Link>
                 <div className="row g-5">
                     <div className="col-lg-6">
                         <ProductImages imagenes={producto.imagenes} />
                     </div>
                         <div className="col-lg-6">
                             <div>
-                                <div className="mb-4">
+                                <div className="mb-4" id='seccion-pedido'>
                                     <h1 className="display-4 fw-bold" 
                                         style={{
                                             fontFamily: "'Playfair Display', serif",
@@ -242,7 +254,7 @@ const ProductoDetail = ({ onAddToCart, cartItems }) => {
                                     </p>
                                 </div>
 
-                            <div className="mb-4" style={{borderColor: '#E2E2E2'}}>
+                            <div id="seleccion-tallas" className="mb-4" style={{borderColor: '#E2E2E2'}}>
                                 <label className="fw-bold mb-3 d-block" 
                                     style={{
                                         fontFamily: "'Playfair Display', serif",
@@ -261,8 +273,8 @@ const ProductoDetail = ({ onAddToCart, cartItems }) => {
                                             data-active={selectedTalla === size}
                                             data-testid={`size-option-${size}`}
                                             >
-                                                {size}
-                                            </button>
+                                            {size}
+                                        </button>
                                     ))}
                                 </div>
 
@@ -309,21 +321,52 @@ const ProductoDetail = ({ onAddToCart, cartItems }) => {
                             <div className="mb-4">
                                 <p className="text-muted small" style={{color: '#888888'}}>
                                     Stock disponible: 
-                                        <span className="fw-bold ms-1" style={{
-                                        color: '#4A4A4A'
-                                        }}>
-                                            {
-                                            stockEspecifico === 1 ? '1 unidad' : 
-                                            stockEspecifico === 0 ? 'Agotado' : 
-                                            `${stockEspecifico} unidades`}
-                                        </span>
+                                    <span className="fw-bold ms-1" style={{color: '#4A4A4A'}}>
+                                    {stockEspecifico === 1 ? '1 unidad' : 
+                                    stockEspecifico === 0 ? 'Agotado' : 
+                                    `${stockEspecifico} unidades`}
+                                    </span>
                                 </p>
-                            </div>
-                            <button
-                                onClick={handleAddToCart}
-                                disabled={!selectedTalla || !selectedColor || stockEspecifico === 0 || noHayStockDisponible}
-                                className="btn w-100 py-3 fs-5 fw-medium mb-4 border-0"
-                                style={{
+                                </div>
+
+                               <div className="d-flex flex-column gap-3 mb-4">
+                                <button
+                                    onClick={handleWhatsAppIndividual}
+                                    className="btn w-100 py-3 fs-5 fw-medium border-0"
+                                    style={{
+                                    backgroundColor: (stockEspecifico === 0) 
+                                        ? '#CCCCCC' 
+                                        : '#25D366',
+                                    color: '#FFFFFF',
+                                    borderRadius: '50px',
+                                    transition: 'all 0.3s ease',
+                                    boxShadow: '0 10px 25px rgba(37, 211, 102, 0.2)',
+                                    cursor: (stockEspecifico === 0) 
+                                        ? 'not-allowed' 
+                                        : 'pointer'
+                                    }}
+                                    onMouseEnter={(e) => {
+                                    if (selectedTalla && selectedColor && stockEspecifico > 0 && !noHayStockDisponible) {
+                                        e.target.style.transform = 'scale(1.02)';
+                                        e.target.style.backgroundColor = '#128C7E';
+                                    }
+                                    }}
+                                    onMouseLeave={(e) => {
+                                    if (selectedTalla && selectedColor && stockEspecifico > 0) {
+                                        e.target.style.transform = 'scale(1)';
+                                        e.target.style.backgroundColor = '#25D366';
+                                    }
+                                    }}
+                                >
+                                    <i className="bi bi-whatsapp me-2"></i>
+                                    Pedir por WhatsApp
+                                </button>
+
+                                <button
+                                    onClick={handleAddToCart}
+                                    disabled={!selectedTalla || !selectedColor || stockEspecifico === 0 || noHayStockDisponible}
+                                    className="btn w-100 py-3 fs-5 fw-medium border-0 d-flex align-items-center justify-content-center gap-2"
+                                    style={{
                                     backgroundColor: (!selectedTalla || !selectedColor || stockEspecifico === 0 || noHayStockDisponible) 
                                         ? '#CCCCCC' 
                                         : 'var(--color-primary)',
@@ -334,23 +377,25 @@ const ProductoDetail = ({ onAddToCart, cartItems }) => {
                                     cursor: (!selectedTalla || !selectedColor || stockEspecifico === 0 || noHayStockDisponible) 
                                         ? 'not-allowed' 
                                         : 'pointer'
-                                }}
-                                data-testid="add-to-cart-button"
-                                onMouseEnter={(e) => {
+                                    }}
+                                    onMouseEnter={(e) => {
                                     if (selectedTalla && selectedColor && stockEspecifico > 0 && !noHayStockDisponible) {
                                         e.target.style.transform = 'scale(1.05)';
                                         e.target.style.backgroundColor = 'var(--color-primary)';
                                     }
-                                }}
-                                onMouseLeave={(e) => {
+                                    }}
+                                    onMouseLeave={(e) => {
                                     if (selectedTalla && selectedColor && stockEspecifico > 0) {
                                         e.target.style.transform = 'scale(1)';
                                         e.target.style.backgroundColor = 'var(--color-primary)';
                                     }
-                                }}
-                            > 
-                                Agregar al carrito
-                            </button>
+                                    }}
+                                >
+                                    <ShoppingCart size={20} />
+                                    Agregar al carrito
+                                </button>
+
+                                </div>
                         </div>
                         <div className="product-info-card p-4 rounded-3">
                             <h4 className="product-info-title fw-semibold mb-3">
